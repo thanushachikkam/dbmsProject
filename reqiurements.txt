@@ -1,0 +1,7 @@
+fastapi 
+pymongo 
+gridfs  
+uvicorn 
+email-validator 
+python-multipart 
+python-mime

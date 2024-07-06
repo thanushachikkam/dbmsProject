@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publication Summary</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+}
+.summary-section, .publications-section, .patents-books-section, .google-scholar-section {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input[type="number"], input[type="url"], input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type="number"]:focus, input[type="url"]:focus, input[type="text"]:focus {
+    outline: none;
+    border: 1px solid #4CAF50;
+}
+input[type="submit"],button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.google-scholar-section label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#logoutButton {
+    margin-top: 10px;
+    background-color: #dc3545;
+}
+
+#logoutButton:hover {
+    background-color: #c82333;
+}
+    </style>
+</head>
+<body>
+    <h1>Publication Summary</h1>
+    <form action="http://127.0.0.1:8000/4thpage" method="post">
+        <div class="summary-section">
+            <h2>Summary of Publications</h2>
+            <table>
+                <tr>
+                    <td>Number of International Journal Papers:</td>
+                    <td><input type="number" name="number_international_journal_papers" id="number_international_journal_papers"></td>
+                </tr>
+                <tr>
+                    <td>Number of National Journal Papers:</td>
+                    <td><input type="number" name="number_national_journal_papers" id="number_national_journal_papers"></td>
+                </tr>
+                <tr>
+                    <td>Number of International Conference Papers:</td>
+                    <td><input type="number" name="number_international_conference_papers" id="number_international_conference_papers"></td>
+                </tr>
+                <tr>
+                    <td>Number of National Conference Papers:</td>
+                    <td><input type="number" name="number_national_conference_papers" id="number_national_conference_papers"></td>
+                </tr>
+                <tr>
+                    <td>Number of Patents:</td>
+                    <td><input type="number" name="number_patents" id="number_patents"></td>
+                </tr>
+                <tr>
+                    <td>Number of Books:</td>
+                    <td><input type="number" name="number_books" id="number_books"></td>
+                </tr>
+                <tr>
+                    <td>Number of Book Chapters:</td>
+                    <td><input type="number" name="number_book_chapters" id="number_book_chapters"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="publications-section">
+            <h2>List of 5 Best Publications</h2>
+            <table>
+                <tr>
+                    <th>Author</th>
+                    <th>Title</th>
+                    <th>Journal/Conference</th>
+                    <th>Year/Vol/Page</th>
+                    <th>Impact Factor</th>
+                    <th>DOI</th>
+                    <th>Status</th>
+                </tr>
+                <!-- Row 1 -->
+                <tr>
+                    <td><input type="text" name="author_1" id="author_1"></td>
+                    <td><input type="text" name="title_1" id="title_1"></td>
+                    <td><input type="text" name="journal_conference_1" id="journal_conference_1"></td>
+                    <td><input type="text" name="year_vol_page_1" id="year_vol_page_1"></td>
+                    <td><input type="text" name="impact_factor_1" id="impact_factor_1"></td>
+                    <td><input type="text" name="doi_1" id="doi_1"></td>
+                    <td><input type="text" name="status_1" id="status_1"></td>
+                </tr>
+                <!-- Row 2 -->
+                <tr>
+                    <td><input type="text" name="author_2" id="author_2"></td>
+                    <td><input type="text" name="title_2" id="title_2"></td>
+                    <td><input type="text" name="journal_conference_2" id="journal_conference_2"></td>
+                    <td><input type="text" name="year_vol_page_2" id="year_vol_page_2"></td>
+                    <td><input type="text" name="impact_factor_2" id="impact_factor_2"></td>
+                    <td><input type="text" name="doi_2" id="doi_2"></td>
+                    <td><input type="text" name="status_2" id="status_2"></td>
+                </tr>
+                <!-- Row 3 -->
+                <tr>
+                    <td><input type="text" name="author_3" id="author_3"></td>
+                    <td><input type="text" name="title_3" id="title_3"></td>
+                    <td><input type="text" name="journal_conference_3" id="journal_conference_3"></td>
+                    <td><input type="text" name="year_vol_page_3" id="year_vol_page_3"></td>
+                    <td><input type="text" name="impact_factor_3" id="impact_factor_3"></td>
+                    <td><input type="text" name="doi_3" id="doi_3"></td>
+                    <td><input type="text" name="status_3" id="status_3"></td>
+                </tr>
+                <!-- Row 4 -->
+                <tr>
+                    <td><input type="text" name="author_4" id="author_4"></td>
+                    <td><input type="text" name="title_4" id="title_4"></td>
+                    <td><input type="text" name="journal_conference_4" id="journal_conference_4"></td>
+                    <td><input type="text" name="year_vol_page_4" id="year_vol_page_4"></td>
+                    <td><input type="text" name="impact_factor_4" id="impact_factor_4"></td>
+                    <td><input type="text" name="doi_4" id="doi_4"></td>
+                    <td><input type="text" name="status_4" id="status_4"></td>
+                </tr>
+                <!-- Row 5 -->
+                <tr>
+                    <td><input type="text" name="author_5" id="author_5"></td>
+                    <td><input type="text" name="title_5" id="title_5"></td>
+                    <td><input type="text" name="journal_conference_5" id="journal_conference_5"></td>
+                    <td><input type="text" name="year_vol_page_5" id="year_vol_page_5"></td>
+                    <td><input type="text" name="impact_factor_5" id="impact_factor_5"></td>
+                    <td><input type="text" name="doi_5" id="doi_5"></td>
+                    <td><input type="text" name="status_5" id="status_5"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="patents-books-section">
+            <h2>List of Patents and Books Published</h2>
+            <table>
+                <tr>
+                    <th>Inventors/Authors</th>
+                    <th>Title of Patent/Book</th>
+                    <th>Country of Patent</th>
+                    <th>Patent Number</th>
+                    <th>Date of Filing</th>
+                    <th>Date of Published</th>
+                    <th>Status</th>
+                </tr>
+                <!-- Patent/Book Row 1 -->
+                <tr>
+                    <td><input type="text" name="inventors_1" id="inventors_1"></td>
+                    <td><input type="text" name="title_patent_book_1" id="title_patent_book_1"></td>
+                    <td><input type="text" name="country_1" id="country_1"></td>
+                    <td><input type="text" name="patent_number_1" id="patent_number_1"></td>
+                    <td><input type="text" name="date_filing_1" id="date_filing_1"></td>
+                    <td><input type="text" name="date_published_1" id="date_published_1"></td>
+                    <td><input type="text" name="status_patent_book_1" id="status_patent_book_1"></td>
+                </tr>
+                <!-- Patent/Book Row 2 -->
+                <tr>
+                    <td><input type="text" name="inventors_2" id="inventors_2"></td>
+                    <td><input type="text" name="title_patent_book_2" id="title_patent_book_2"></td>
+                    <td><input type="text" name="country_2" id="country_2"></td>
+                    <td><input type="text" name="patent_number_2" id="patent_number_2"></td>
+                    <td><input type="text" name="date_filing_2" id="date_filing_2"></td>
+                    <td><input type="text" name="date_published_2" id="date_published_2"></td>
+                    <td><input type="text" name="status_patent_book_2" id="status_patent_book_2"></td>
+                </tr>
+                <!-- Patent/Book Row 3 -->
+                <tr>
+                    <td><input type="text" name="inventors_3" id="inventors_3"></td>
+                    <td><input type="text" name="title_patent_book_3" id="title_patent_book_3"></td>
+                    <td><input type="text" name="country_3" id="country_3"></td>
+                    <td><input type="text" name="patent_number_3" id="patent_number_3"></td>
+                    <td><input type="text" name="date_filing_3" id="date_filing_3"></td>
+                    <td><input type="text" name="date_published_3" id="date_published_3"></td>
+                    <td><input type="text" name="status_patent_book_3" id="status_patent_book_3"></td>
+                </tr>
+                <!-- Patent/Book Row 4 -->
+                <tr>
+                    <td><input type="text" name="inventors_4" id="inventors_4"></td>
+                    <td><input type="text" name="title_patent_book_4" id="title_patent_book_4"></td>
+                    <td><input type="text" name="country_4" id="country_4"></td>
+                    <td><input type="text" name="patent_number_4" id="patent_number_4"></td>
+                    <td><input type="text" name="date_filing_4" id="date_filing_4"></td>
+                    <td><input type="text" name="date_published_4" id="date_published_4"></td>
+                    <td><input type="text" name="status_patent_book_4" id="status_patent_book_4"></td>
+                </tr>
+                <!-- Patent/Book Row 5 -->
+                <tr>
+                    <td><input type="text" name="inventors_5" id="inventors_5"></td>
+                    <td><input type="text" name="title_patent_book_5" id="title_patent_book_5"></td>
+                    <td><input type="text" name="country_5" id="country_5"></td>
+                    <td><input type="text" name="patent_number_5" id="patent_number_5"></td>
+                    <td><input type="text" name="date_filing_5" id="date_filing_5"></td>
+                    <td><input type="text" name="date_published_5" id="date_published_5"></td>
+                    <td><input type="text" name="status_patent_book_5" id="status_patent_book_5"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="google-scholar-section">
+            <h2>Google Scholar Link</h2>
+            <label for="google_scholar_link">Google Scholar Link:</label>
+            <input type="url" name="google_scholar_link" id="google_scholar_link" placeholder="Enter your Google Scholar profile link">
+        </div>
+
+        <input type="submit" value="Submit">
+        <button type="button" id="logoutButton">Logout</button>
+    </form>
+    <script>
+
+
+window.onload=chec();
+        async function chec(){
+        const response = await fetch('http://127.0.0.1:8000/session4');
+        const data = await response.json();
+        console.log(data);
+         if(data.status==true){
+
+            dict = ["number_international_journal_papers","number_national_journal_papers","number_international_conference_papers","number_national_conference_papers","number_patents","number_books","number_book_chapters"] 
+            dict2 = ["author_1", "title_1", "journal_conference_1", "year_vol_page_1", "impact_factor_1", "doi_1", "status_1","author_2", "title_2", "journal_conference_2", "year_vol_page_2", "impact_factor_2", "doi_2", "status_2","author_3", "title_3", "journal_conference_3", "year_vol_page_3", "impact_factor_3", "doi_3", "status_3","author_4", "title_4", "journal_conference_4", "year_vol_page_4", "impact_factor_4", "doi_4", "status_4","author_5", "title_5", "journal_conference_5", "year_vol_page_5", "impact_factor_5", "doi_5", "status_5"]
+            dict3 = ["inventors_1", "title_patent_book_1", "country_1", "patent_number_1", "date_filing_1", "date_published_1", "status_patent_book_1","inventors_2", "title_patent_book_2", "country_2", "patent_number_2", "date_filing_2", "date_published_2", "status_patent_book_2","inventors_3", "title_patent_book_3", "country_3", "patent_number_3", "date_filing_3", "date_published_3", "status_patent_book_3","inventors_4", "title_patent_book_4", "country_4", "patent_number_4", "date_filing_4", "date_published_4", "status_patent_book_4","inventors_5", "title_patent_book_5", "country_5", "patent_number_5", "date_filing_5", "date_published_5", "status_patent_book_5"]
+            dict4 = ["google_scholar_link"]        
+            for(let item of dict){
+                document.getElementById(item).value=data.summary_publication[item]
+            }
+            for(let item of dict2){
+                document.getElementById(item).value=data.best_publication[item]
+            }
+            for(let item of dict3){
+                document.getElementById(item).value=data.patents[item]
+            }
+            for(let item of dict4){
+                document.getElementById(item).value=data.scholar_link[item]
+            }
+        
+
+          
+         }
+         else{
+             window.location.href="http://127.0.0.1:5500/front/login.html";
+        }
+    }
+    async function logout() {
+            const response = await fetch('http://127.0.0.1:8000/logout');
+            window.location.href="http://127.0.0.1:5500/front/login.html";
+        }
+
+        // Add click event listener to the logout button
+        document.getElementById('logoutButton').addEventListener('click', function(event){
+            logout();
+        });
+
+
+
+    </script>
+</body>
+</html>

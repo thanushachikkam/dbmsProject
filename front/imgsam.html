@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Downloader</title>
+</head>
+<body>
+    <h1>File Downloader</h1>
+    <button id="downloadButton">Download File</button>
+
+    <script>
+        async function downloadFile() {
+            const response = await fetch('http://127.0.0.1:8000/file');
+            const fileData = await response.json();
+            
+            const fileType = fileData.content_type;
+            const fileContent = fileData.file_content;
+
+            // Decode base64-encoded file content
+            const decodedFileContent = atob(fileContent);
+
+            // Convert string to Uint8Array
+            const arrayBuffer = new Uint8Array(decodedFileContent.length);
+            for (let i = 0; i < decodedFileContent.length; i++) {
+                arrayBuffer[i] = decodedFileContent.charCodeAt(i);
+            }
+
+            // Create Blob from Uint8Array
+            const blob = new Blob([arrayBuffer], { type: fileType });
+
+            // Create object URL for the Blob
+            const objectUrl = URL.createObjectURL(blob);
+
+            // Create temporary anchor element
+            const link = document.createElement('a');
+            link.href = objectUrl;
+            link.download = `file.${fileType.split('/')[1]}`;
+
+            // Programmatically trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Attach click event listener to download button
+        document.getElementById('downloadButton').addEventListener('click', downloadFile);
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Change</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Password Change & Your Data</h1>
+    
+     <!-- Input box for verification code -->
+    <label for="verificationCode">Enter Verification Code:</label>
+    <input type="text" id="verificationCode" name="verificationCode"><br><br>
+    
+    <!-- Input box for new password -->
+    <label for="newPassword">Enter New Password:</label>
+    <input type="password" id="newPassword" name="newPassword"><br><br>
+    
+    <!-- Input box to confirm new password -->
+    <label for="confirmPassword">Confirm New Password:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword"><br><br>
+    
+    <!-- Button to send mail for password change -->
+    <button type="button" onclick="sendMail()">Send Mail to Change Password</button><br><br>
+    
+    <!-- Button to generate combined data PDF -->
+    <button type="button" onclick="generatePDF()">Generate Combined Data PDF</button><br><br>
+    
+    <!-- Button to confirm password change -->
+    <button type="button" onclick="confirmPasswordChange()">Confirm Password Change</button><br><br>
+    
+   
+    
+    <script>
+        check=false
+        // Function to send mail for password change
+        async function sendMail() {
+            // Your code to send mail
+            code=document.getElementById('verificationCode').value
+            new_password=document.getElementById('newPassword').value
+            confirm_password=document.getElementById('confirmPassword').value
+            const response = await fetch('http://127.0.0.1:8000/forgot_password')
+            const data = await response.json();
+            if(data.status==true){
+            alert("Mail sent for password change!");
+            check=true
+            }
+        }
+        
+        // Function to generate combined data PDF
+        async function generatePDF() {
+            // Your code to generate PDF
+            const response = await fetch('http://127.0.0.1:8000/file');
+            const fileData = await response.json();
+            if(fileData.status==true){
+            const fileType = fileData.content_type;
+            const fileContent = fileData.file_content;
+
+            // Decode base64-encoded file content
+            const decodedFileContent = atob(fileContent);
+
+            // Convert string to Uint8Array
+            const arrayBuffer = new Uint8Array(decodedFileContent.length);
+            for (let i = 0; i < decodedFileContent.length; i++) {
+                arrayBuffer[i] = decodedFileContent.charCodeAt(i);
+            }
+
+            // Create Blob from Uint8Array
+            const blob = new Blob([arrayBuffer], { type: fileType });
+
+            // Create object URL for the Blob
+            const objectUrl = URL.createObjectURL(blob);
+
+            // Create temporary anchor element
+            const link = document.createElement('a');
+            link.href = objectUrl;
+            link.download = `file.${fileType.split('/')[1]}`;
+
+            // Programmatically trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+            alert("Combined data PDF generated!");
+        }
+        
+        // Function to confirm password change
+        async function confirmPasswordChange() {
+            // Your code to confirm password change
+            code=document.getElementById('verificationCode').value
+            new_password=document.getElementById('newPassword').value
+            confirm_password=document.getElementById('confirmPassword').value
+            if(new_password!=confirm_password){
+                alert("passwords don't match");
+            }else{
+            const response = await fetch('http://127.0.0.1:8000/change_password/'+code+'/'+new_password)
+            const data = await response.json();
+            if(data.status==true){
+            alert("Password change confirmed!");
+            }else{
+                alert("wrong verification code!");
+            }
+        }
+        }
+    </script>
+</body>
+</html>
